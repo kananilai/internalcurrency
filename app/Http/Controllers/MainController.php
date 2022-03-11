@@ -31,11 +31,16 @@ class MainController extends Controller
         $items = Thank::where('to_user_id',$id)->get();
 
         //送ったuser_idのみ取得
-        $send_name = Thank::where('to_user_id',$id)->first(['user_id']);
-        //送ったuser_idと一致するユーザーをuserから探す（nameカラムのみ取り出す。）
-        $send_name= User::where('id',$send_name->user_id )->first(['name']);
+        if($send_name = Thank::where('to_user_id',$id)->first(['user_id'])){
+                    //送ったuser_idと一致するユーザーをuserから探す（nameカラムのみ取り出す。）
+            $send_name= User::where('id',$send_name->user_id )->first(['name']);
+            return view('mypage',['items' =>$items, 'send_name'=>$send_name]);
+        }else{
+            $message = "メッセージはありません。。";
+            return view('mypage',['message' => $message]);
+        }
 
-        return view('mypage',['items' =>$items, 'send_name'=>$send_name]);
+
     }
 
 }

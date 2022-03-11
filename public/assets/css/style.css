@@ -95,8 +95,6 @@
 
 }
 
-
-
 /* register.blade.php */
 .title{
     text-align: center;
@@ -176,12 +174,12 @@
 .button{
     display: inline-block;
     padding: 0.8em 3em;
-    background-color: #4392F1; /* 背景色 */
-    box-shadow: 0 5px 0 #436da2; /* 影の太さ・色 */
+    background-color: #4392F1;
+    box-shadow: 0 5px 0 #436da2;
     border-radius: 60px;
     color: #fff;
     cursor: pointer;
-    text-decoration: none; /* 文字の下線を消す */
+    text-decoration: none;
     border:none;
 }
 .button:hover{
@@ -231,6 +229,9 @@
 .recive_title p{
     display:inline-block;
     background:linear-gradient(transparent 70%, #4392F1 0%);
+}
+.zero_message{
+    margin:0 auto;
 }
 
 /*
