@@ -34,6 +34,4 @@ class SendController extends Controller
         ]);
         return redirect('/top');
     }
-
-
 }

@@ -6,13 +6,6 @@
     <h1>新規登録</h1>
 </div>
 <form action="/register" method="POST">
-
-        {{-- @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-        @endif --}}
-
     @csrf
     <table class="form_table">
         <tr>
