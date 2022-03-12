@@ -12,15 +12,31 @@ class MainController extends Controller
 {
     public function index()
     {
-        $today=Carbon::today();
-        $today_thanks = Thank::whereDate('created_at', $today)->count();
         $count = Thank::count();
         if (Auth::check()){
             $items=Auth::user();
-            return view('/top',['items' => $items,'today_thanks' => $today_thanks,'count'=> $count]);
+            $today=Carbon::today();
+            if(!empty(Thank::whereDate('created_at', $today)->first())){
+                $today_thanks = Thank::whereDate('created_at', $today)->count();
+                return view('/top',['items' => $items,'today_thanks' => $today_thanks,'count'=> $count]);
+            }
+            else{
+                $today_thanks=0;
+                return view('/top',['items' => $items,'today_thanks' => $today_thanks,'count'=> $count]);
+            }
+
         }
         else{
+            $today=Carbon::today();
+            if(!empty(Thank::whereDate('created_at', $today)->first())){
+            $today_thanks = Thank::whereDate('created_at', $today)->count();
             return view('/top',['today_thanks'=>$today_thanks,'count'=> $count]);
+            }
+            else{
+                $today_thanks=0;
+                return view('/top',['count'=> $count,'today_thanks'=>$today_thanks,]);
+            }
+
         }
     }
 
