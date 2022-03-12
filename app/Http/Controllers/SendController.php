@@ -32,6 +32,6 @@ class SendController extends Controller
         User::where('id',$request['to_user_id'])->update([
             'point' => $point
         ]);
-        return redirect('/top');
+        return redirect('/');
     }
 }
