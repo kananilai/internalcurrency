@@ -43,20 +43,30 @@ class MainController extends Controller
     public function mypage()
     {
         $id=Auth::id();
-        //メッセージ取得
-        $items = Thank::where('to_user_id',$id)->get();
+
 
         //送ったuser_idのみ取得
         if($send_name = Thank::where('to_user_id',$id)->first(['user_id'])){
-                    //送ったuser_idと一致するユーザーをuserから探す（nameカラムのみ取り出す。）
+            //送ったuser_idと一致するユーザーをuserから探す（nameカラムのみ取り出す。）
+            $items = Thank::where('to_user_id',$id)->get();
             $send_name= User::where('id',$send_name->user_id )->first(['name']);
             return view('mypage',['items' =>$items, 'send_name'=>$send_name]);
         }else{
             $message = "メッセージはありません。。";
             return view('mypage',['message' => $message]);
         }
-
-
     }
 
+    public function sended()
+    {
+        $id=Auth::id();
+        if(Thank::where('user_id',$id)->first()){
+            $sended = Thank::where('user_id',$id)->get();
+            $send_name= User::where('id',$id)->first(['name']);
+            return view('mypage',['sended' => $sended,'send_name'=>$send_name,'message'=>' ']);
+        }else{
+            $send_message = "メッセージを送っていません。。";
+            return view('mypage',['send_message' => $send_message]);
+        }
+    }
 }
