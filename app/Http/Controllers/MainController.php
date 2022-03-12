@@ -56,17 +56,4 @@ class MainController extends Controller
             return view('mypage',['message' => $message]);
         }
     }
-
-    public function sended()
-    {
-        $id=Auth::id();
-        if(Thank::where('user_id',$id)->first()){
-            $sended = Thank::where('user_id',$id)->get();
-            $send_name= User::where('id',$id)->first(['name']);
-            return view('mypage',['sended' => $sended,'send_name'=>$send_name,'message'=>' ']);
-        }else{
-            $send_message = "メッセージを送っていません。。";
-            return view('mypage',['send_message' => $send_message]);
-        }
-    }
 }

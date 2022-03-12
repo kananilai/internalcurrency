@@ -25,7 +25,6 @@ Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->na
 Route::get('/',[\App\Http\Controllers\MainController::class,'index'])->name('top');
 
 Route::get('/mypage',[\App\Http\Controllers\MainController::class,'mypage'])->name('mypage')->middleware('auth');
-Route::get('/mypage',[\App\Http\Controllers\MainController::class,'sended'])->name('mypage')->middleware('auth');
 
 Route::get('/send',[\App\Http\Controllers\SendController::class,'index'])->name('send')->middleware('auth');
 Route::post('/send',[\App\Http\Controllers\SendController::class,'send']);
