@@ -16,7 +16,7 @@
     </div>
     @endforeach
     @else
-    <p class="title zero_message">{{ $message }}</p>
+        <p class="title zero_message">{{ $message }}</p>
     @endif
     </div>
 </div>
